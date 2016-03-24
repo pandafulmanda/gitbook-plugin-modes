@@ -12,11 +12,11 @@ require(["gitbook", "jquery"], function(gitbook, $) {
   }
 
   function setCurrentMode(mode){
+    $('[data-mode=' + getCurrentMode() + ']').removeClass('on');
     if(mode !== undefined){
       document.body.dataset.modeShow = mode;
       $('[data-mode=' + mode + ']').addClass('on');
     } else {
-      $('[data-mode=' + getCurrentMode() + ']').removeClass('on');
       delete document.body.dataset.modeShow;
     }
   }
