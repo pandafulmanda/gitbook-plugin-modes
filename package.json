@@ -1,0 +1,8 @@
+{
+    "name": "gitbook-plugin-modes",
+    "version": "0.0.1",
+    "description": "Gitbook show-hide for different modes.",
+    "engines": {
+        "gitbook": ">1.x.x"
+    }
+}
