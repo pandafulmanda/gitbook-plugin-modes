@@ -32,7 +32,7 @@ module.exports = {
       'modes.css'
     ],
     js: [
-      'modes.js
+      'modes.js'
     ]
   }
 };
