@@ -2,7 +2,7 @@ require(["gitbook", "jquery"], function(gitbook, $) {
 
   function bindModers(){
     $('.moder').on('click', function(){
-      var mode = this.dataset.triggerMode;
+      var mode = this.dataset.modeTrigger;
       if(mode === getCurrentMode()){
         setCurrentMode();
       } else {
@@ -16,8 +16,8 @@ require(["gitbook", "jquery"], function(gitbook, $) {
       document.body.dataset.modeShow = mode;
       $('[data-mode=' + mode + ']').addClass('on');
     } else {
+      $('[data-mode=' + getCurrentMode() + ']').removeClass('on');
       delete document.body.dataset.modeShow;
-      $('[data-mode=' + mode + ']').removeClass('on');
     }
   }
 
