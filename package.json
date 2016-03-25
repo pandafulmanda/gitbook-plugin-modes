@@ -1,18 +1,21 @@
 {
-    "name": "gitbook-plugin-modes",
-    "version": "0.0.1",
-    "description": "Gitbook show-hide for different modes.",
-    "engines": {
-        "gitbook": "*"
-    },
-    "homepage": "https://github.com/pandafulmanda/gitbook-plugin-modes",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/pandafulmanda/gitbook-plugin-modes.git"
-    },
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/pandafulmanda/gitbook-plugin-modes/issues"
-    },
-    "author": "Amanda Shih <pandafulmanda@gmail.com>"
+  "name": "gitbook-plugin-modes",
+  "version": "0.0.1",
+  "description": "Gitbook show-hide for different modes.",
+  "engines": {
+    "gitbook": "*"
+  },
+  "homepage": "https://github.com/pandafulmanda/gitbook-plugin-modes",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pandafulmanda/gitbook-plugin-modes.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pandafulmanda/gitbook-plugin-modes/issues"
+  },
+  "author": "Amanda Shih <pandafulmanda@gmail.com>",
+  "dependencies": {
+    "gitbook-markdown": "^1.2.0"
+  }
 }
