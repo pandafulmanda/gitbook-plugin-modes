@@ -2,6 +2,7 @@ require(["gitbook", "jquery", "lodash"], function(gitbook, $, _) {
 
   function setModes(){
     var modes = getQueryParams();
+    var $bookLinks = $('a:not([href^=http])');
     var $modes;
 
     if(_.isEmpty(modes)){
@@ -11,6 +12,10 @@ require(["gitbook", "jquery", "lodash"], function(gitbook, $, _) {
     }
 
     $modes.addClass('on');
+
+    $bookLinks.each(function(){
+      this.href += window.location.search;
+    });
   }
 
   function getAllByModes(modes){
