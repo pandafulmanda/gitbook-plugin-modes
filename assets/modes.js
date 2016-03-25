@@ -1,29 +1,44 @@
-require(["gitbook", "jquery"], function(gitbook, $) {
+require(["gitbook", "jquery", "lodash"], function(gitbook, $, _) {
 
-  function bindModers(){
-    $('.moder').on('click', function(){
-      var mode = this.dataset.modeTrigger;
-      if(mode === getCurrentMode()){
-        setCurrentMode();
-      } else {
-        setCurrentMode(mode);
+  function setModes(){
+    var modes = getQueryParams();
+    var $modes;
+
+    if(_.isEmpty(modes)){
+      $modes = $('[data-mode][data-mode-default]');
+    } else {
+      $modes = getAllByModes(modes);
+    }
+
+    $modes.addClass('on');
+  }
+
+  function getAllByModes(modes){
+    var modeSelectors = _.map(modes, function(modeValue, mode){
+      return '[data-mode=' + mode + ']';
+    });
+    var allModes = modeSelectors.join(',');
+    return $(allModes);
+  }
+
+  function getQueryParams(searchString) {
+    var searchString = searchString || window.location.search;
+    if(searchString.search(/\\?/) === 0){
+      searchString = searchString.substring(1);
+    }
+
+    var queryPairs = searchString.split('&');
+    var queryParams = {};
+
+    _.each(queryPairs, function(querySet){
+      var pair = querySet.split('=');
+      if(pair[0] !== ''){
+        queryParams[pair[0]] = pair[1];
       }
     });
+
+    return queryParams;
   }
 
-  function setCurrentMode(mode){
-    $('[data-mode=' + getCurrentMode() + ']').removeClass('on');
-    if(mode !== undefined){
-      document.body.dataset.modeShow = mode;
-      $('[data-mode=' + mode + ']').addClass('on');
-    } else {
-      delete document.body.dataset.modeShow;
-    }
-  }
-
-  function getCurrentMode(){
-    return document.body.dataset.modeShow;
-  }
-
-  gitbook.events.bind("page.change", bindModers);
+  gitbook.events.bind("page.change", setModes);
 });

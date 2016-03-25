@@ -9,18 +9,15 @@ function getElFromDisplay(display){
 
 module.exports = {
   blocks: {
-    moder: {
-      process: function(block) {
-        var el = getElFromDisplay(block.kwargs.display);
-
-        return '<' + el + ' class="moder" data-mode-trigger=' + block.kwargs.mode + '>' + block.body + '</' + el + '>'
-      }
-    },
     mode: {
       process: function(block) {
         var el = getElFromDisplay(block.kwargs.display);
+        var dataAttrs = 'data-mode=' + block.kwargs.mode;
+        if(block.kwargs.default){
+          dataAttrs += ' data-mode-default=true'; 
+        }
 
-        return '<' + el + ' data-mode=' + block.kwargs.mode + '>' + block.body + '</' + el + '>'
+        return '<' + el + ' ' + dataAttrs + '>' + block.body + '</' + el + '>'
       }
 
     }
