@@ -9,13 +9,17 @@ require(["gitbook", "jquery", "lodash"], function(gitbook, $, _) {
       $modes = $('[data-mode][data-mode-default]');
     } else {
       $modes = getAllByModes(modes);
+
+      $bookLinks.each(function(){
+        var existingParams = getQueryParams(this.href);
+        var mergedParams = _.extend({}, existingParams, modes);
+        var existingHref = this.href.split('?')[0];
+
+        this.href = existingHref + '?' + $.param(mergedParams);
+      });
     }
 
     $modes.addClass('on');
-
-    $bookLinks.each(function(){
-      this.href += window.location.search;
-    });
   }
 
   function getAllByModes(modes){
@@ -28,12 +32,15 @@ require(["gitbook", "jquery", "lodash"], function(gitbook, $, _) {
 
   function getQueryParams(searchString) {
     var searchString = searchString || window.location.search;
-    if(searchString.search(/\\?/) === 0){
-      searchString = searchString.substring(1);
+    var parts = searchString.split('?');
+    var queryParams = {};
+    searchString = parts[1];
+
+    if(!_.isString(searchString)){
+      return queryParams;
     }
 
     var queryPairs = searchString.split('&');
-    var queryParams = {};
 
     _.each(queryPairs, function(querySet){
       var pair = querySet.split('=');
